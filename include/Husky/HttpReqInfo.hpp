@@ -3,12 +3,12 @@
 
 #include <iostream>
 #include <string>
-#include "Limonp/Logger.hpp"
-#include "Limonp/StringUtil.hpp"
+#include "limonp/Logging.hpp"
+#include "limonp/StringUtil.hpp"
 
 namespace Husky
 {
-    using namespace Limonp;
+    using namespace limonp;
     using namespace std;
 
     static const char* const KEY_METHOD = "METHOD";

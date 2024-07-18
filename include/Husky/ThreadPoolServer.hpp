@@ -18,7 +18,7 @@
 
 namespace Husky
 {
-    using namespace Limonp;
+    using namespace limonp;
 
     class ThreadPoolServer
     {

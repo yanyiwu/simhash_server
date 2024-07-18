@@ -1,51 +1,38 @@
 # Simhash Server
 
-## 简介
+[![Test](https://github.com/yanyiwu/cppjieba/actions/workflows/test.yml/badge.svg)](https://github.com/yanyiwu/cppjieba/actions/workflows/test.yml)
 
-简单 [simhash] 包装而成的 HTTP Server ，
-主要是总是有人反馈因为不懂C++所以不知道怎么使用 [simhash] ，
-希望提供个 HTTP 接口用法。
-所以才有了这个项目。独立成单独一个仓库的原因是不想让 [simhash] 项目太过臃肿。
+## Introduction
 
-如果你喜欢该项目，请 star [simhash] 而不是该项目，以助于[simhash]的传播和更好的后续改进。多谢。
+HTTP Server based on [simhash]
 
-## 用法
+## Usage
 
-【依赖】
+Dependencies:
 
 + `g++ (version >= 4.1 recommended) or clang++`;
 
-【下载】
-
 ```sh
-git clone git://github.com/yanyiwu/simhash_server.git
-cd keyword_server
-make
-#如果是MacOSX用户，请使用 make osx 。
+git clone --recurse-submodules https://github.com/yanyiwu/simhash_server.git
 ```
 
-【启动服务】
+```sh
+make
+cd keyword_server
+```
+
+if you are using MacOSX, please use `make osx` .
 
 ```
 ./simhash.server
 ```
 
-【GET请求示例】
-
 ```
 curl "http://127.0.0.1:11201/?s=你好世界"
 ```
 
-【POST请求示例】
-
 ```
 curl -d "我是蓝翔 技工拖拉机学院手扶拖拉机专业的。" "http://127.0.0.1:11201"
-```
-
-## 客服
-
-```
-i@yanyiwu.com
 ```
 
 [simhash]:http://github.com/yanyiwu/simhash

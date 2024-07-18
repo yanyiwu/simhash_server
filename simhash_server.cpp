@@ -4,10 +4,10 @@
 #include <ctype.h>
 #include <string.h>
 #include "Husky/ThreadPoolServer.hpp"
-#include "Simhasher.hpp"
+#include "simhash/Simhasher.hpp"
 
 using namespace Husky;
-using namespace Simhash;
+using namespace simhash;
 
 const size_t PORT = 11201;
 const size_t THREAD_NUMBER = 4;
