@@ -9,20 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: make
-      run: make
-    - name: Start server
-      run: ./simhash.server &
-    - name: Wait for server to start
-      run: |
-        timeout=10
-        while ! curl "http://127.0.0.1:11201/?s=你好世界" do
-          if [ $timeout -le 0 ]; then
-            echo "Server failed to start"
-            exit 1
-          fi
-          timeout=$(($timeout - 1))
-          echo 'sleep 1'
-          sleep 1
-        done
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: make
+        run: make
+      - name: Start server
+        run: ./simhash.server &
+      - name: Wait for server to start
+        run: |
+          timeout=10
+          while ! curl "http://127.0.0.1:11201/?s=你好世界" do
+            if [ $timeout -le 0 ]; then
+              echo "Server failed to start"
+              exit 1
+            fi
+            timeout=$(($timeout - 1))
+            echo 'sleep 1'
+            sleep 1
+          done
