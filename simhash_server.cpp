@@ -3,19 +3,18 @@
 #include <string>
 #include <ctype.h>
 #include <string.h>
-#include "Husky/ThreadPoolServer.hpp"
+#include "thread_pool_server.h"
 #include "simhash/Simhasher.hpp"
 
-using namespace Husky;
+using namespace husky;
 using namespace simhash;
 
 const size_t PORT = 11201;
 const size_t THREAD_NUMBER = 4;
-const size_t QUEUE_MAX_SIZE = 256;
-const char* const DICT_PATH = "./dict/jieba.dict.utf8";
-const char* const MODEL_PATH = "./dict/hmm_model.utf8";
-const char* const IDF_PATH = "./dict/idf.utf8";
-const char* const STOP_WORDS_PATH = "./dict/stop_words.utf8";
+const char* const DICT_PATH = "./submodules/simhash/submodules/cppjieba/dict/jieba.dict.utf8";
+const char* const MODEL_PATH = "./submodules/simhash/submodules/cppjieba/dict/hmm_model.utf8";
+const char* const IDF_PATH = "./submodules/simhash/submodules/cppjieba/dict/idf.utf8";
+const char* const STOP_WORDS_PATH = "./submodules/simhash/submodules/cppjieba/dict/stop_words.utf8";
 const size_t TOP_N = 5;
 
 class ReqHandler: public IRequestHandler
@@ -24,7 +23,7 @@ class ReqHandler: public IRequestHandler
         ReqHandler(const string& dictPath, const string& modelPath, const string& idfPath, const string& stopwordsPath): _simasher(dictPath, modelPath, idfPath, stopwordsPath){};
         virtual ~ReqHandler(){};
     public:
-        virtual bool do_GET(const HttpReqInfo& httpReq, string& strSnd) const
+        virtual bool DoGET(const HttpReqInfo& httpReq, string& strSnd) 
         {
             string s, tmp;
             httpReq.GET("s", tmp);
@@ -34,9 +33,9 @@ class ReqHandler: public IRequestHandler
             strSnd << u64;
             return ok;
         }
-        virtual bool do_POST(const HttpReqInfo& httpReq, string& strSnd) const
+        virtual bool DoPOST(const HttpReqInfo& httpReq, string& strSnd) 
         {
-            const string& s = httpReq.getBody();
+            const string& s = httpReq.GetBody();
             uint64_t u64;
             bool ok = _simasher.make(s, TOP_N, u64);
             strSnd << u64;
@@ -49,8 +48,8 @@ class ReqHandler: public IRequestHandler
 int main(int argc, char* argv[])
 {
     ReqHandler reqHandler(DICT_PATH, MODEL_PATH, IDF_PATH, STOP_WORDS_PATH);
-    ThreadPoolServer server(THREAD_NUMBER, QUEUE_MAX_SIZE, PORT, reqHandler);
-    server.start();
+    ThreadPoolServer server(THREAD_NUMBER, PORT, reqHandler);
+    server.Start();
     return EXIT_SUCCESS;
 }
 

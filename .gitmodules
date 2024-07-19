@@ -1,3 +1,6 @@
 [submodule "submodules/simhash"]
 	path = submodules/simhash
 	url = https://github.com/yanyiwu/simhash
+[submodule "submodules/husky"]
+	path = submodules/husky
+	url = https://github.com/yanyiwu/husky.git
