@@ -1,6 +1,6 @@
 # Simhash Server
 
-[![Test](https://github.com/yanyiwu/cppjieba/actions/workflows/test.yml/badge.svg)](https://github.com/yanyiwu/cppjieba/actions/workflows/test.yml)
+[![Test](https://github.com/yanyiwu/simhash_server/actions/workflows/test.yml/badge.svg)](https://github.com/yanyiwu/simhash_server/actions/workflows/test.yml)
 
 ## Introduction
 
